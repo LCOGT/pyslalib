@@ -22,6 +22,8 @@ if __name__ == "__main__":
           version           = "1.0.4",
           author            = "Scott Ransom",
           author_email      = "sransom@nrao.edu",
+          setup_requires = ['numpy'],
+          install_requires = ['numpy'],
           packages = ['pyslalib'],
           package_dir = {'pyslalib': 'lib'},
           package_data = {'pyslalib': ['docstring_pickle.pkl']},
