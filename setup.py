@@ -10,14 +10,14 @@ f = open("lib/docstring_pickle.pkl", "wb")
 pickle.dump(docstring, f)
 f.close()
 
-ext1 = Extension(name = 'slalib',
+ext1 = Extension(name = 'pyslalib.slalib',
                  include_dirs = ['.'],
                  sources = ['slalib.pyf']+\
                            glob.glob("*.f")+\
                            glob.glob("*.F"))
 
 if __name__ == "__main__":
-    setup(name = 'pyslalib',
+    setup(name = 'pySLALIB',
           description       = "f2py and numpy based wrappers for SLALIB",
           version           = "1.0.4",
           author            = "Scott Ransom",
