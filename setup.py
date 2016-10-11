@@ -24,6 +24,7 @@ if __name__ == "__main__":
           author_email      = "sransom@nrao.edu",
           setup_requires = ['numpy'],
           install_requires = ['numpy'],
+          tests_require=["unittest-xml-reporting"],
           packages = ['pyslalib'],
           package_dir = {'pyslalib': 'lib'},
           package_data = {'pyslalib': ['docstring_pickle.pkl']},
