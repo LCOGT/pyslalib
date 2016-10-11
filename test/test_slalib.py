@@ -2,6 +2,7 @@ from pyslalib import slalib as S
 import numpy as N
 import numpy.testing as T
 import math, unittest
+import xmlrunner
 
 #
 # Note:  This file is based on the sla_test.f file that is used
@@ -1340,12 +1341,12 @@ class TestSLALIBFunctions(unittest.TestCase):
         # Single precision
         av = N.asarray([-0.123, 0.0987, 0.0654])
         rm1 = S.sla_av2m(av)
-        ans = N.asarray([[0.9930075842721269,  0.05902743090199868, -0.1022335560329612], 
-                         [-0.07113807138648245, 0.9903204657727545, -0.1191836812279541], 
+        ans = N.asarray([[0.9930075842721269,  0.05902743090199868, -0.1022335560329612],
+                         [-0.07113807138648245, 0.9903204657727545, -0.1191836812279541],
                          [0.09420887631983825,  0.1256229973879967,  0.9875948309655174]])
         T.assert_array_almost_equal(rm1, ans, 6, 'sla_av2m')
         rm2 = S.sla_euler('yzy', 2.345, -0.333, 2.222)
-        ans = N.asarray([[-0.1681574770810878, 0.1981362273264315, 0.9656423242187410], 
+        ans = N.asarray([[-0.1681574770810878, 0.1981362273264315, 0.9656423242187410],
                          [-0.2285369373983370, 0.9450659587140423,-0.2337117924378156],
                          [-0.9589024617479674,-0.2599853247796050,-0.1136384607117296]])
         T.assert_array_almost_equal(rm2, ans, 6, 'sla_euler')
@@ -1379,12 +1380,12 @@ class TestSLALIBFunctions(unittest.TestCase):
         # Double precision
         av = N.asarray([-0.123, 0.0987, 0.0654])
         rm1 = S.sla_dav2m(av)
-        ans = N.asarray([[0.9930075842721269,  0.05902743090199868, -0.1022335560329612], 
-                         [-0.07113807138648245, 0.9903204657727545, -0.1191836812279541], 
+        ans = N.asarray([[0.9930075842721269,  0.05902743090199868, -0.1022335560329612],
+                         [-0.07113807138648245, 0.9903204657727545, -0.1191836812279541],
                          [0.09420887631983825,  0.1256229973879967,  0.9875948309655174]])
         T.assert_array_almost_equal(rm1, ans, 12, 'sla_dav2m')
         rm2 = S.sla_deuler('yzy', 2.345, -0.333, 2.222)
-        ans = N.asarray([[-0.1681574770810878, 0.1981362273264315, 0.9656423242187410], 
+        ans = N.asarray([[-0.1681574770810878, 0.1981362273264315, 0.9656423242187410],
                          [-0.2285369373983370, 0.9450659587140423,-0.2337117924378156],
                          [-0.9589024617479674,-0.2599853247796050,-0.1136384607117296]])
         T.assert_array_almost_equal(rm2, ans, 12, 'sla_deuler')
@@ -1421,4 +1422,4 @@ class TestSLALIBFunctions(unittest.TestCase):
                               0.8963914139430839, 12, 'sla_zd')
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
