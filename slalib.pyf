@@ -814,7 +814,7 @@ python module slalib ! in
         subroutine sla_kbj(jb,e,k,j) ! in :slalib:kbj.f
             integer :: jb
             double precision :: e
-            character*1 intent(out) ::  k
+            character*1 intent(out,c) ::  k
             integer intent(out) ::  j
         end subroutine sla_kbj
         subroutine sla_m2av(rmat,axvec) ! in :slalib:m2av.f
