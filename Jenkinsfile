@@ -15,9 +15,6 @@
 
 pipeline {
 	agent any
-	environment {
-		REMOTE_BINARY_LOCATION = 'jenkins@buildsba3.lco.gtn:/opt/python_package_index/pyslalib/'
-	}
 	stages {
 		// This step is needed because the permissions of all of the files we're
 		// building here gets all sorts of messed up due to the pact of evil between
@@ -43,13 +40,6 @@ pipeline {
 			steps {
 				sh 'docker pull quay.io/pypa/manylinux1_x86_64:latest'
 				sh 'docker run --rm -v $PWD:/io quay.io/pypa/manylinux1_x86_64:latest /bin/bash /io/build-wheels.sh'
-			}
-		}
-		stage('Push to LCO-internal PyPI') {
-			steps {
-				sshagent (credentials: ['jenkins-rancher-ssh']) {
-					sh 'for i in wheelhouse/*.whl dist/*.tar.gz ; do scp -o StrictHostKeyChecking=no ${i} ${REMOTE_BINARY_LOCATION}; done'
-				}
 			}
 		}
 		// This post-build cleanup is needed for the same reasons as the pre-build
