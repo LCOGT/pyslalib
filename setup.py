@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import glob
-import numpy
 from numpy.distutils.core import setup, Extension
 import pickle
 import get_docstring
@@ -19,13 +18,12 @@ ext1 = Extension(name = 'pyslalib.slalib',
                            glob.glob("*.F"))
 
 if __name__ == "__main__":
-    numpy_version = numpy.__version__
     setup(name = 'pySLALIB',
           description       = "f2py and numpy based wrappers for SLALIB",
           version           = "1.0.7",
           author            = "Scott Ransom",
           author_email      = "sransom@nrao.edu",
-          install_requires = ['numpy=={}'.format(numpy_version)],
+          install_requires = ["numpy<1.24"],
           tests_require=["unittest-xml-reporting"],
           packages = ['pyslalib'],
           package_dir = {'pyslalib': 'lib'},
