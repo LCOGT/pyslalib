@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyslalib"
-version = "1.0.8"
+version = "1.0.9"
 description = "f2py and numpy based wrappers for SLALIB"
 authors = [
   "Jashandeep Sohi <jsohi@lco.global>",
