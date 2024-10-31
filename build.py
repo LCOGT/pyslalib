@@ -14,7 +14,7 @@ def build(setup_kwargs):
   ext = Extension(
     name = "pyslalib.slalib",
     include_dirs = ["."],
-    sources = list(set(["slalib.pyf"]) & set(glob.glob("*.f")) & set(glob.glob("*.F")) - set(glob.glob("*-f2pywrappers.f")))
+    sources = ["slalib.pyf"] + list(set(glob.glob("*.f")) - set(glob.glob("*-f2pywrappers.f"))) + glob.glob("*.F")
   )
 
   setup_kwargs.update({
