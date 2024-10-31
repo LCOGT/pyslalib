@@ -1,3 +1,37 @@
+[tool.poetry]
+name = "pyslalib"
+version = "1.0.8"
+description = "f2py and numpy based wrappers for SLALIB"
+authors = [
+  "Jashandeep Sohi <jsohi@lco.global>",
+  "Scott Ransom <sransom@nrao.edu>",
+]
+readme = "README.txt"
+include = [
+  "pyslalib/docstring_pickle.pkl",
+  { path = "get_docstring.py", format = "sdist" },
+  { path = "*.c", format = "sdist" },
+  { path = "*.h", format = "sdist" },
+  { path = "*.pyf", format = "sdist" },
+  { path = "*.f", format = "sdist" },
+  { path = "*.F", format = "sdist" },
+]
+exclude = [
+  "*-f2pywrappers.f",
+  "slalibmodule.c",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+numpy = "<1.24"
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = true
+
+[tool.poetry.group.dev.dependencies]
+unittest-xml-reporting = "^3.2.0"
+
 [build-system]
-build-backend = "setuptools.build_meta:__legacy__"
-requires = ["setuptools>=61.0.0", "wheel", "numpy<1.24"]
+requires = ["poetry-core", "setuptools>=61.0.0,<=73.0.1", "numpy<1.24"]
+build-backend = "poetry.core.masonry.api"
