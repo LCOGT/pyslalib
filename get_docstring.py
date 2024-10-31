@@ -21,11 +21,12 @@ def get_docstring():
     END = "*-"
     doc_dict = {}
      
-    file_list = glob.glob('*.[fF]')
+    file_list = list(set(glob.glob('*.[fF]')) - set(glob.glob('*-f2pywrappers.f')))
      
     print("%d files found." % len(file_list))
      
     for i,file_name in enumerate(file_list):
+        print(file_name)
         f = open(file_name, "r")
         
         name_line = f.readline() # first line has name
