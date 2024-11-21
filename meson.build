@@ -35,6 +35,10 @@ inc_np = include_directories(incdir_numpy, incdir_f2py)
 fc = meson.get_compiler('fortran')
 quadmath_dep = fc.find_library('quadmath', required: false)
 
+run_command(
+    py, ['-m', 'numpy.f2py', '-m', 'slalib', 'slalib.pyf', '*.f', '*.F'], check : true
+).stdout().strip()
+
 slalib_sources = []
 foreach suff: ['f', 'F']
     slalib_sources += run_command(
@@ -42,7 +46,7 @@ foreach suff: ['f', 'F']
         ['-c', 'from glob import glob; print("\\n".join(glob("*.' + suff + '")), end="")'],
         check: true).stdout().split('\n')
 endforeach
-slalib_sources += ['slalibmodule.c', 'slalib-f2pywrappers.f', fortranobject_c]
+slalib_sources += ['slalibmodule.c', fortranobject_c]
 
 run_command(
     py, ['-c', '''
