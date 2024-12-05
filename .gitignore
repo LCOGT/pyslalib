@@ -15,3 +15,5 @@ wheelhouse
 .devenv
 *-f2pywrappers.f
 slalibmodule.c
+.venv
+.pdm*
