@@ -1,7 +1,7 @@
 project(
     'slalib',
     ['c', 'fortran'],
-    version : '1.0.9',
+    version : '1.0.10',
     meson_version: '>= 1.1.0',
     default_options: [
         'warning_level=1',
@@ -36,7 +36,7 @@ fc = meson.get_compiler('fortran')
 quadmath_dep = fc.find_library('quadmath', required: false)
 
 run_command(
-    py, ['-m', 'numpy.f2py', '-m', 'slalib', 'slalib.pyf', '*.f', '*.F'], check : true
+    py, ['-m', 'numpy.f2py', 'slalib.pyf', '*.f', '*.F', '*.h'], check : true
 ).stdout().strip()
 
 slalib_sources = []
